@@ -8,7 +8,7 @@ const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 class Watch {
     constructor() {
-        this.tempSrc = process.cwd() + '\\model\\page.ts.temp'; //取ts文件模板的路径
+        this.tempSrc = path_1.default.join(process.cwd(), 'model/page.ts.temp'); //取ts文件模板的路径
     }
     run() {
         gulp_1.default.watch('js/**/*.js', (event) => {
@@ -17,6 +17,9 @@ class Watch {
                 this.addFile(path);
             }
         });
+        this.watchScss();
+    }
+    watchScss() {
     }
     /**
      * 根据js文件创建一个ts文件
@@ -28,16 +31,26 @@ class Watch {
         let pageName = paths[paths.length - 1].split('.')[0]; //取文件的名字
         let pageNameUp = pageName.substring(0, 1).toUpperCase() + pageName.substring(1); //去首字母大写的文件名
         let tempContent = await this.getTempContent(); //取ts文件模板的内容
+        let importHead = this.getImport(`${folderPath}`); //获取导入模块的层级
         tempContent = tempContent.replace(/{{ NAME }}/g, pageNameUp); //替换ts文件模板的常量为当前的文件名
-        // console.warn(tempContent);
-        this.autuImport();
+        tempContent = tempContent.replace(/{{ OFFSET }}/g, importHead); // 替换导入的目录
         // 创建一个ts文件
-        // fs.outputFile(`${originPath}/${fileName}.ts`, `ts : ${fileName}.ts`);
+        this.addTsFile(`${folderPath}/${pageName}.ts`, tempContent);
+        this.addScssFile(`${folderPath}/${pageName}.scss`, '');
     }
-    autuImport() {
-        let originSrc = path_1.default.join(__dirname, 'utils/origin/Origin');
-        console.warn(__dirname);
-        console.warn(originSrc);
+    addScssFile(src, content) {
+        fs_extra_1.default.outputFile(src, content);
+    }
+    addTsFile(src, content) {
+        fs_extra_1.default.outputFile(src, content);
+    }
+    getImport(fileSrc) {
+        let offset = fileSrc.split('\\').length - process.cwd().split('\\').length;
+        let offsetStr = '';
+        for (let i = 1; i <= offset; i++) {
+            offsetStr += '../';
+        }
+        return offsetStr;
     }
     async getTempContent() {
         return await fs_extra_1.default.readFile(this.tempSrc, 'utf8'); //取ts文件模板的内容

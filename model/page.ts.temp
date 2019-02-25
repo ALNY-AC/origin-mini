@@ -1,13 +1,23 @@
-// import { PageView } from '../../utils/pageview';
-// import { Origin } from '../../utils/origin/Origin';
+import { Origin } from '{{ OFFSET }}utils/origin/Origin';
+import { PageView } from '{{ OFFSET }}utils/pageview';
+import { Watch } from '{{ OFFSET }}utils/origin/watch/Watch';
 
 @PageView()
+@Watch()
 class {{ NAME }}Page extends Origin {
-    data: {
 
-    }
-    async orOnInit() {
+  /**
+   * 在data中声明变量
+   */
+  data: {
 
-    }
+  }
+
+  /**
+   * 启动函数
+   */
+  orOnInit() {
+
+  }
 
 }
