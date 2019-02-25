@@ -3,11 +3,12 @@ import path from 'path';
 import fs from 'fs-extra';
 const sass = require('gulp-sass');
 export class Watch {
-    tempSrc: string = path.join(process.cwd(), 'model/page.ts.temp');//取ts文件模板的路径
+    tempSrc = path.join(process.cwd(), 'model/page.ts.temp');//取ts文件模板的路径
     constructor() { }
     run() {
-        gulp.watch('pages/**/*.js', (event: any) => {
+        gulp.watch('pages/**/*.js', (event) => {
             let { path, type } = event;
+            console.warn(type);
             if (type == 'added') {
                 if (path.indexOf('.js') > 0) {
                     console.warn('js');
@@ -19,10 +20,10 @@ export class Watch {
         });
         // this.watchScss();
     }
-    private watchScss() {
+    watchScss() {
         // sass
 
-        gulp.watch('pages/**/*.scss', function (event: any) {
+        gulp.watch('pages/**/*.scss', function (event) {
             let { path } = event;
             let paths = path.split("\\");//路径切割
             let folderPath = paths.slice(0, paths.length - 1).join('\\');//取文件所在的文件夹
@@ -37,7 +38,7 @@ export class Watch {
      * 根据js文件创建一个ts文件
      * @param filePath 文件路径
      */
-    private async addFile(filePath: string) {
+    async addFile(filePath) {
         let paths = filePath.split("\\");//路径切割
         let folderPath = paths.slice(0, paths.length - 1).join('\\');//取文件所在的文件夹
         let pageName = paths[paths.length - 1].split('.')[0];//取文件的名字
@@ -50,13 +51,13 @@ export class Watch {
         this.addTsFile(`${folderPath}/${pageName}.ts`, tempContent);
         this.addScssFile(`${folderPath}/${pageName}.scss`, '');
     }
-    private addScssFile(src: string, content: string) {
+    addScssFile(src, content) {
         fs.outputFile(src, content);
     }
-    private addTsFile(src: string, content: string): void {
+    addTsFile(src, content) {
         fs.outputFile(src, content);
     }
-    getImport(fileSrc: string): string {
+    getImport(fileSrc) {
         let offset = fileSrc.split('\\').length - process.cwd().split('\\').length;
         let offsetStr = '';
         for (let i = 1; i <= offset; i++) {
@@ -64,7 +65,7 @@ export class Watch {
         }
         return offsetStr
     }
-    private async getTempContent() {
+    async getTempContent() {
         return await fs.readFile(this.tempSrc, 'utf8');//取ts文件模板的内容
     }
 }
