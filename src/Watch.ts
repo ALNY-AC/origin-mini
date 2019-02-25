@@ -1,21 +1,37 @@
 import gulp from 'gulp'
 import path from 'path';
 import fs from 'fs-extra';
-
+const sass = require('gulp-sass');
 export class Watch {
     tempSrc: string = path.join(process.cwd(), 'model/page.ts.temp');//取ts文件模板的路径
     constructor() { }
     run() {
-        gulp.watch('js/**/*.js', (event: any) => {
+        gulp.watch('pages/**/*.js', (event: any) => {
             let { path, type } = event;
-            if (type == "changed") {
-                this.addFile(path);
+            if (type == 'added') {
+                if (path.indexOf('.js') > 0) {
+                    console.warn('js');
+                    this.addFile(path);
+                }
             }
+            // if (type == "changed") {
+            // }
         });
-        this.watchScss();
+        // this.watchScss();
     }
     private watchScss() {
+        // sass
 
+        gulp.watch('pages/**/*.scss', function (event: any) {
+            let { path } = event;
+            let paths = path.split("\\");//路径切割
+            let folderPath = paths.slice(0, paths.length - 1).join('\\');//取文件所在的文件夹
+
+            gulp.src(path) // Gets all files ending with .scss in app/scss and children dirs
+                .pipe(sass({ outputStyle: 'compressed' }))
+                .pipe(gulp.dest(folderPath))
+            console.warn(path);
+        });
     }
     /**
      * 根据js文件创建一个ts文件
