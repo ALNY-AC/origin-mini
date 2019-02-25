@@ -22,12 +22,12 @@
     "gulp-sass": "^4.0.2"
   },
   "bin": {
-    "origin-vue": "./index.js",
-    "ov": "./index.js"
+    "origin-mini": "./index.js",
+    "om": "./index.js"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.5",
-    "@types/gulp": "^11.9.5",
+    "@types/gulp": "^4.0.5",
     "@types/node": "^11.9.5",
     "typescript": "^3.3.3333"
   }
