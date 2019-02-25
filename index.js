@@ -1,1 +1,1 @@
-console.warn(1);
+require('./bin/index')

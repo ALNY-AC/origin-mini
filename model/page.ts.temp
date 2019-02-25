@@ -1,0 +1,13 @@
+// import { PageView } from '../../utils/pageview';
+// import { Origin } from '../../utils/origin/Origin';
+
+@PageView()
+class {{ NAME }}Page extends Origin {
+    data: {
+
+    }
+    async orOnInit() {
+
+    }
+
+}

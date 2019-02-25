@@ -16,11 +16,19 @@
     "url": "https://github.com/ALNY-AC/orogin-mini/issues"
   },
   "dependencies": {
+    "@types/gulp": "^4.0.5",
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1"
   },
   "bin": {
     "origin-vue": "./index.js",
     "ov": "./index.js"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.5",
+    "@types/gulp": "^11.9.5",
+    "@types/node": "^11.9.5",
+    "gulp": "^3.9.1",
+    "typescript": "^3.3.3333"
   }
 }
