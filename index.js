@@ -1,5 +1,6 @@
-import program from 'commander';
-import { Watch } from './src/Watch';
+const program = require('commander');
+const Watch = require('./src/Watch');
+
 
 program
     .option('-w, --watch [lang]', '监听文件，当小程序新建一个page，就会自动创建一个ts文件')

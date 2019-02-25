@@ -24,7 +24,5 @@
   "bin": {
     "origin-mini": "./index.js",
     "om": "./index.js"
-  },
-  "devDependencies": {
   }
 }
