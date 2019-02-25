@@ -14,5 +14,13 @@
   },
   "bugs": {
     "url": "https://github.com/ALNY-AC/orogin-mini/issues"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "fs-extra": "^7.0.1"
+  },
+  "bin": {
+    "origin-vue": "./index.js",
+    "ov": "./index.js"
   }
 }
