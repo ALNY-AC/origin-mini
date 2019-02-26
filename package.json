@@ -22,7 +22,7 @@
     "gulp-sass": "^4.0.2"
   },
   "bin": {
-    "origin-mini": "./index.js",
-    "om": "./index.js"
+    "origin-mini": "./bin/index.js",
+    "om": "./bin/index.js"
   }
 }
