@@ -2,27 +2,28 @@
   "name": "origin-mini",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "origin-mini.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ALNY-AC/orogin-mini.git"
+    "url": "https://github.com/ALNY-AC/origin-mini.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ALNY-AC/orogin-mini/issues"
+    "url": "https://github.com/ALNY-AC/origin-mini/issues"
+  },
+  "bin": {
+    "origin-mini": "./bin/origin-mini.js",
+    "om": "./bin/origin-mini.js"
   },
   "dependencies": {
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",
     "gulp": "^3.9.1",
-    "gulp-sass": "^4.0.2"
-  },
-  "bin": {
-    "origin-mini": "./bin/index.js",
-    "om": "./bin/index.js"
+    "node-sass": "^4.11.0"
   }
 }
